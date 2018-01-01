@@ -1,6 +1,6 @@
 class Api::V1::CoffeeController < JSONAPI::ResourceController
   def index
-    @coffee = Coffee.all
+    @coffee = Coffee.all.limit(10)
     @coffee = @coffee.map { |coffee| Api::V1::CoffeeResource.new(coffee, nil) }
     render json: JSONAPI::ResourceSerializer.new( Api::V1::CoffeeResource).serialize_to_hash(@coffee),
       content_type: "text/json"
