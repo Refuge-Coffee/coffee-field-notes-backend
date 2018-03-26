@@ -1,4 +1,4 @@
-class Coffee < ApplicationRecord
+class Bean < ApplicationRecord
   validates :name, presence: true
   validates :origin, presence: true
   validates :elevation, presence: true

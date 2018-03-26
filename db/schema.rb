@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171230014351) do
 
-  create_table "coffees", force: :cascade do |t|
+  create_table "beans", force: :cascade do |t|
     t.string "name"
     t.string "origin"
     t.integer "elevation"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20171230014351) do
   create_table "notes", force: :cascade do |t|
     t.string "content"
     t.string "time_of_day"
-    t.integer "coffee_id"
+    t.integer "bean_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coffee_id"], name: "index_notes_on_coffee_id"
+    t.index ["bean_id"], name: "index_notes_on_bean_id"
   end
 
 end
