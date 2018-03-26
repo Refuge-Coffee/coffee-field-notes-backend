@@ -1,8 +1,8 @@
 class Api::V1::BeansController < JSONAPI::ResourceController
   def index
-    @beans = Bean.last(9)
+    @beans = Bean.all.limit(25)
     @beans = @beans.map { |bean| Api::V1::BeanResource.new(bean, nil) }
-    render json: JSONAPI::ResourceSerializer.new( Api::V1::BeanResource).serialize_to_hash(@bean),
+    render json: JSONAPI::ResourceSerializer.new(Api::V1::BeanResource).serialize_to_hash(@beans),
       content_type: "text/json"
   end
 
