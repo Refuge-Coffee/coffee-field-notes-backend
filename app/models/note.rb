@@ -1,3 +1,3 @@
 class Note < ApplicationRecord
-  belongs_to :coffee
+  belongs_to :bean
 end
