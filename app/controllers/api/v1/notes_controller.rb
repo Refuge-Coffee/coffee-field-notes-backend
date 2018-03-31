@@ -1,7 +1,7 @@
 class Api::V1::NotesController < JSONAPI::ResourceController
   def index
     @notes = Note.all.limit(25)
-    @notes = @notes.map { |note| Api::V1::BeanResource.new(note, nil) }
+    @notes = @notes.map { |note| Api::V1::NoteResource.new(note, nil) }
     render json: JSONAPI::ResourceSerializer.new(Api::V1::NoteResource).serialize_to_hash(@notes),
       content_type: "text/json"
   end
@@ -23,7 +23,7 @@ class Api::V1::NotesController < JSONAPI::ResourceController
 private
 
   def build_note_params(data)
-    bean_params = ActionController::Parameters.new(data)
+    note_params = ActionController::Parameters.new(data)
     attributes = [
       :content, :time_of_day, :association
     ]
