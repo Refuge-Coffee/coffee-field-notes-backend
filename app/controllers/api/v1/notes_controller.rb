@@ -1,6 +1,11 @@
 class Api::V1::NotesController < JSONAPI::ResourceController
   def index
-    @notes = Note.all.limit(25)
+    if params["sort_by"]
+      query = "#{params['sort_by']} #{params['direction']}"
+      @notes = Note.order(query).limit(25)
+    else
+      @notes = Note.all.limit(25)
+    end
     @notes = @notes.map { |note| Api::V1::NoteResource.new(note, nil) }
     render json: JSONAPI::ResourceSerializer.new(Api::V1::NoteResource).serialize_to_hash(@notes),
       content_type: "text/json"
