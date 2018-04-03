@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CoffeeTest < ActiveSupport::TestCase
+class Api::V1::LocationsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
