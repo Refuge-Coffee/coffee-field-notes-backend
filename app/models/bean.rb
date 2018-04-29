@@ -4,4 +4,6 @@ class Bean < ApplicationRecord
   validates :elevation, presence: true
 
   has_many :notes
+
+  belongs_to :roaster
 end

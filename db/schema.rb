@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428230647) do
+ActiveRecord::Schema.define(version: 20180429015426) do
 
   create_table "beans", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20180428230647) do
     t.integer "elevation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "roaster_id"
+    t.index ["roaster_id"], name: "index_beans_on_roaster_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -29,6 +31,8 @@ ActiveRecord::Schema.define(version: 20180428230647) do
     t.integer "rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "roaster_id"
+    t.index ["roaster_id"], name: "index_locations_on_roaster_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -38,6 +42,12 @@ ActiveRecord::Schema.define(version: 20180428230647) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bean_id"], name: "index_notes_on_bean_id"
+  end
+
+  create_table "roasters", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
