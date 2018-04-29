@@ -4,6 +4,7 @@ FactoryBot.define do
     address { Faker::Address.street_address }
     city { Faker::Address.city }
     state { Faker::Address.state }
-    elevation { rand(10000) }
+    website { Faker::Internet.url }
+    rating { rand(1..10) }
   end
 end
