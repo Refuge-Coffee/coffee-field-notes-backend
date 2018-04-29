@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class CoffeeTest < ActiveSupport::TestCase
+RSpec.describe Bean, type: :model do 
   setup do
     @note = FactoryBot.build(:bean)
   end

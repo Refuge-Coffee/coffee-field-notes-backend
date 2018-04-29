@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class Api::V1::NotesControllerTest < ActionDispatch::IntegrationTest
+RSpec.describe Api::V1::NotesController, type: :controller do
 
   setup do
     @notes = FactoryBot.create_list(:note, 30)

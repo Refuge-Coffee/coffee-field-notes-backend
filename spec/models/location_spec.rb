@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class LocationTest < ActiveSupport::TestCase
+RSpec.describe Location, type: :model do
   # test "the truth" do
   #   assert true
   # end

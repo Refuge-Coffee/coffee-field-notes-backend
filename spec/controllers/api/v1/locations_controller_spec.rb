@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-class Api::V1::LocationsControllerTest < ActionDispatch::IntegrationTest
+RSpec.describe Api::V1::LocationsController, type: :controller do
   setup do
     @roasters = FactoryBot.create_list(:location, 15)
     @roaster = @locations.first

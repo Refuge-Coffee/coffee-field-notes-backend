@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class Api::V1::BeansControllerTest < ActionDispatch::IntegrationTest
+RSpec.describe Api::V1::BeansController, type: :controller do
 
   setup do
     @beans = FactoryBot.create_list(:bean, 30)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class NoteTest < ActiveSupport::TestCase
+RSpec.describe Note, type: :model do 
 
   setup do
     @note = FactoryBot.build(:note)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class RoasterTest < ActiveSupport::TestCase
+RSpec.describe Roaster, type: :model do
   # test "the truth" do
   #   assert true
   # end

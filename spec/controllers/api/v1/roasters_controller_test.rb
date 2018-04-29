@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class Api::V1::RoastersControllerTest < ActionDispatch::IntegrationTest
+RSpec.describe Api::V1::RoastersController, type: :controller do
   setup do
     @roasters = FactoryBot.create_list(:roaster, 15)
     @roaster = @roasters.first

@@ -1,0 +1,2 @@
+class SpecTestController < ApplicationController
+end
