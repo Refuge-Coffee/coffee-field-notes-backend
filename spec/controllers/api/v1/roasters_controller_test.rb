@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'rails_helper'
 
 class Api::V1::RoastersControllerTest < ActionDispatch::IntegrationTest
   setup do

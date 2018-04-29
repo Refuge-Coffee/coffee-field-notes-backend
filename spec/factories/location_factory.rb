@@ -6,5 +6,6 @@ FactoryBot.define do
     state { Faker::Address.state }
     website { Faker::Internet.url }
     rating { rand(1..10) }
+    association :roaster
   end
 end
