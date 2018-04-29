@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20180428230647) do
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.string "city"
+    t.string "state"
     t.string "website"
     t.integer "rating", default: 0
     t.datetime "created_at", null: false
