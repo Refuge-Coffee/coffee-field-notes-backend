@@ -7,13 +7,13 @@ RSpec.describe Api::V1::BeansController, type: :controller do
     @bean = @beans.first
   end
 
-  test "GET Index" do
-    get api_v1_beans_url
-    assert_response :success
+  it "should GET Index" do
+    get :index
+    expect(response).to have_http_status(200)
   end
 
-  test "GET Show" do
-    get api_v1_bean_url(@bean.id)
-    assert_response :success
+  it "should GET Show" do
+    get :show, params: { id: @bean.id }
+    expect(response).to have_http_status(200)
   end
 end

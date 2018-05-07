@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Bean, type: :model do 
+RSpec.describe Bean, type: :model do
   setup do
-    @note = FactoryBot.build(:bean)
+    @bean = FactoryBot.build(:bean)
   end
 
-  test "note factory builds a valid instance of Note" do
-    assert @note.valid?
-    assert_equal true, @note.save
+  it "note factory builds a valid instance of Note" do
+    expect(@bean.valid?).to equal(true)
+    expect(@bean.save).to equal(true)
   end
 end

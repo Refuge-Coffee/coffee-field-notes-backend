@@ -6,13 +6,13 @@ RSpec.describe Api::V1::RoastersController, type: :controller do
     @roaster = @roasters.first
   end
 
-  test "GET Index" do
-    get api_v1_roasters_url
-    assert_response :success
+  it "should GET Index" do
+    get :index
+    expect(response).to have_http_status(200)
   end
 
-  test "GET Show" do
-    get api_v1_roaster_url(@roaster.id)
-    assert_response :success
+  it "should GET Show" do
+    get :show, params: { id: @roaster.id }
+    expect(response).to have_http_status(200)
   end
 end

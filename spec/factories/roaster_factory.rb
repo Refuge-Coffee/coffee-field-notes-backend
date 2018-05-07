@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :roaster do
     name { Faker::Company.name }
-    association :location
+    # association :location
   end
 end

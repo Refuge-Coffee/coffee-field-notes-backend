@@ -7,13 +7,13 @@ RSpec.describe Api::V1::NotesController, type: :controller do
     @note = @notes.first
   end
 
-  test "GET Index" do
-    get api_v1_notes_url
-    assert_response :success
+  it "should GET Index" do
+    get :index
+    expect(response).to have_http_status(200)
   end
 
-  test "GET Show" do
-    get api_v1_note_url(@note.id)
-    assert_response :success
+  it "should GET Show" do
+    get :show, params: { id: @note.id }
+    expect(response).to have_http_status(200)
   end
 end
