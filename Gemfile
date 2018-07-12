@@ -13,8 +13,8 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'jsonapi-resources'
-gem 'bcrypt-ruby'
 gem 'doorkeeper'
+gem 'devise', '4.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
