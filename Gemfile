@@ -13,6 +13,7 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'jsonapi-resources'
+gem 'bcrypt-ruby'
 gem 'doorkeeper'
 
 group :development, :test do

@@ -39,6 +39,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
+    bcrypt (3.1.12)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
     builder (3.2.3)
     byebug (9.1.0)
     coderay (1.1.2)
@@ -157,6 +160,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   byebug
   doorkeeper
   factory_bot_rails
