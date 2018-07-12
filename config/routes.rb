@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   use_doorkeeper
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
       jsonapi_resources :notes
       jsonapi_resources :locations
       jsonapi_resources :roasters
+      jsonapi_resources :users
     end
   end
 end
