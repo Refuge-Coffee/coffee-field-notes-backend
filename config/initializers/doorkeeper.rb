@@ -4,15 +4,41 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    user = User.find_by_id(session[:user_id])
-    return user if user.present?
+    fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
+    # Put your resource owner authentication logic here.
+    # Example implementation:
+    #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
   end
 
+  # In this flow, a token is requested in exchange for the resource owner credentials (email and password)
   resource_owner_from_credentials do |routes|
-    user = User.find_for_database_authentication(email: params[:email])
+    user = User.find_for_database_authentication(:email => params[:email])
     if user && user.valid_for_authentication? { user.valid_password?(params[:password]) }
-      return user
+      user
     end
+  end
+
+  # Access token expiration time (default 2 hours).
+  # If you want to disable expiration, set this to nil.
+  access_token_expires_in 5.days
+
+  #
+  # implicit and password grant flows have risks that you should understand
+  # before enabling:
+  #   http://tools.ietf.org/html/rfc6819#section-4.4.2
+  #   http://tools.ietf.org/html/rfc6819#section-4.4.3
+  #
+  # grant_flows %w(authorization_code client_credentials)
+  grant_flows %w(password)
+
+  # Under some circumstances you might want to have applications auto-approved,
+  # so that the user skips the authorization step.
+  # For example if dealing with a trusted application.
+  # skip_authorization do |resource_owner, client|
+  #   client.superapp? or resource_owner.admin?
+  # end
+  skip_authorization do
+    true
   end
 
 end
@@ -20,7 +46,6 @@ end
 module CustomTokenResponse
   def body
     user_details = User.find(@token.resource_owner_id)
-    # call original `#body` method and merge its result with the additional data hash
    	super.merge({
    		status_code: 200,
    		message: I18n.t('devise.sessions.signed_in'),
@@ -36,8 +61,6 @@ module CustomTokenErrorResponse
       message: I18n.t('devise.failure.invalid', authentication_keys: User.authentication_keys.join('/')),
       result: []
     }
-    # or merge with existing values by
-    # super.merge({key: value})
   end
 end
 
