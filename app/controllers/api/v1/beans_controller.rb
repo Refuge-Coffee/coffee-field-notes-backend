@@ -1,7 +1,14 @@
 class Api::V1::BeansController < JSONAPI::ResourceController
   def index
-    @beans = Bean.all.limit(25)
+    
+    if params[:filter] && params[:filter][:query]
+      @beans = beans_matching_search(params[:filter][:query])
+    else 
+      @beans = Bean.all.limit(25)
+    end
+
     @beans = @beans.map { |bean| Api::V1::BeanResource.new(bean, nil) }
+    
     render json: JSONAPI::ResourceSerializer.new(Api::V1::BeanResource).serialize_to_hash(@beans),
       content_type: "text/json"
   end
@@ -21,6 +28,17 @@ class Api::V1::BeansController < JSONAPI::ResourceController
   end
 
 private
+
+  def beans_matching_search(term)
+    matches = []
+    regex_term = Regexp.new(term)
+    Bean.find_each do |bean|
+      if regex_term =~ bean.name
+        matches.push(bean)
+      end
+    end
+    matches
+  end
 
   def build_bean_params(data)
     bean_params = ActionController::Parameters.new(data)
