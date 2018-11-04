@@ -28,14 +28,15 @@ class Api::V1::NotesController < JSONAPI::ResourceController
 private
 
   def build_note_params(data)
+    data["attributes"]["bean_id"] = data["relationships"]["bean"]["data"]["id"]
     note_params = ActionController::Parameters.new(data)
     attributes = [
-      :content, :time_of_day, :association
+      :content, :time_of_day, :bean_id
     ]
-
+  
     note_params.permit(
       attributes: attributes
-    )[:attributes]
+    )
   end
 
   def request_json
