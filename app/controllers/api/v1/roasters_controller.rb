@@ -1,4 +1,4 @@
-class Api::V1::RoastersController < ApplicationController
+class Api::V1::RoastersController < JSONAPI::ResourceController
   def index
     if params["sort_by"]
       query = "#{params['sort_by']} #{params['direction']}"

@@ -1,7 +1,7 @@
 class Api::V1::BeansController < JSONAPI::ResourceController
   def index
     
-    if params[:filter][:query]
+    if params[:filter] && params[:filter][:query]
       @beans = beans_matching_search(params[:filter][:query])
     else 
       @beans = Bean.all.limit(25)
