@@ -16,6 +16,12 @@ class Api::V1::NotesController < JSONAPI::ResourceController
     render json: serialize_note(@note)
   end
 
+  def update
+    @note = Note.find(params[:id])
+    @note.update(build_note_params(request_json["data"]))
+    render json: serialize_note(@note)
+  end
+
   def create
     @note = Note.new(build_note_params(request_json["data"]))
     if @note.save
